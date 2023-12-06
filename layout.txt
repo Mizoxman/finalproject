@@ -1,0 +1,415 @@
+01
+north
+
+you are in a blue room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a green door
+
+n 00
+s 04
+w 00
+e 02
+
+01
+south
+
+you are in a blue room
+in front of you is a yellow door
+to your left is a green door
+to your right is a blank wall
+
+n 00
+s 04
+w 00
+e 02
+
+01
+west
+
+you are in a blue room
+in front of you is a blank wall
+to your left is a yellow door
+to your right is a blank wall
+
+n 00
+s 04
+w 00
+e 02
+
+01
+east
+
+you are in a blue room
+in front of you is a green door
+to your left is a blank wall
+to your right is a yellow door
+
+n 00
+s 04
+w 00
+e 02
+
+02
+north
+
+you are in a green room
+in front of you is a blank wall
+to your left is a blue door
+to your right is a red door
+
+n 00
+s 05
+w 01
+e 03
+
+02
+south
+
+you are in a green room
+in front of you is a white door
+to your left is a red door
+to your right is a blue door
+
+n 00
+s 05
+w 01
+e 03
+
+02
+west
+
+you are in a green room
+in front of you is a blue dor
+to your left is a white door
+to your right is a blank wall
+
+n 00
+s 05
+w 01
+e 03
+
+02
+east
+
+you are in a green room
+in front of you is a red door
+to your left is a blank wall
+to your right is a white door
+
+n 00
+s 05
+w 01
+e 03
+
+03
+north
+
+you are in a red room
+in front of you is a blank wall
+to your left is a green door
+to your right is a blank wall
+
+n 00
+s 00
+w 02
+e 00
+
+03
+south
+
+you are in a red room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a green door
+
+n 00
+s 00
+w 02
+e 00
+
+03
+west
+
+you are in a red room
+in front of you is a green door
+to your left is a blank wall
+to your right is a blank wall
+
+n 00
+s 00
+w 02
+e 00
+
+03
+east
+
+you are in a red room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a blank wall
+
+n 00
+s 00
+w 02
+e 00
+
+04
+north
+
+you are in a yellow room
+in front of you is a blue door
+to your left is a blank wall
+to your right is a white door
+
+n 01
+s 07
+w 00
+e 05
+
+04
+south
+
+you are in a yellow room
+in front of you is a purple door
+to your left is a white door
+to your right is a blank wall
+
+n 01
+s 07
+w 00
+e 05
+
+04
+west
+
+you are in a yellow room
+in front of you is a blank wall
+to your left is a purple door
+to your right is a blue door
+
+n 01
+s 07
+w 00
+e 05
+
+04
+east
+
+you are in a yellow room
+in front of you is a white door
+to your left is a blue door
+to your right is a purple door
+
+n 01
+s 07
+w 00
+e 05
+
+05
+north
+
+you are in a white room
+in front of you is a green door
+to your left is a yellow door
+to your right is a cyan door
+
+n 02
+s 08
+w 04
+e 06
+
+05
+south
+
+you are in a white room
+in front of you is a black door
+to your left is a cyan door
+to your right is a yellow door
+
+n 02
+s 08
+w 04
+e 06
+
+05
+west
+
+you are in a white room
+in front of you is a yellow door
+to your left is a black door
+to your right is a green door
+
+n 02
+s 08
+w 04
+e 06
+
+05
+east
+
+you are in a white room
+in front of you is a cyan door
+to your left is a green door
+to your right is a black door
+
+n 02
+s 08
+w 04
+e 06
+
+06
+north
+
+you are in a cyan room
+in front of you is a blank wall
+to your left is a white door
+to your right is a blank wall
+
+n 00
+s 00
+w 05
+e 00
+
+06
+south
+
+you are in a cyan room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a white door
+
+n 00
+s 00
+w 05
+e 00
+
+06
+west
+
+you are in a cyan room
+in front of you is a white door
+to your left is a blank wall
+to your right is a blank wall
+
+n 00
+s 00
+w 05
+e 00
+
+06
+east
+
+you are in a cyan room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a blank wall
+
+n 00
+s 00
+w 05
+e 00
+
+07
+north
+
+you are in a purple room
+in front of you is a yellow door
+to your left is a blank wall
+to your right is a black door
+
+n 04
+s 00
+w 00
+e 08
+
+07
+south
+
+you are in a purple room
+in front of you is a blank wall
+to your left is a black door
+to your right is a blank wall
+
+n 04
+s 00
+w 00
+e 08
+
+07
+west
+
+you are in a purple room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a yellow door
+
+n 04
+s 00
+w 00
+e 08
+
+07
+east
+
+you are in a purple room
+in front of you is a black door
+to your left is a yellow door
+to your right is a blank wall
+
+n 04
+s 00
+w 00
+e 08
+
+08
+north
+
+you are in a black room
+in front of you is a white door
+to your left is a purple door
+to your right is a blank wall
+
+n 05
+s 00
+w 07
+e 00
+
+08
+south
+
+you are in a black room
+in front of you is a blank wall
+to your left is a blank wall
+to your right is a purple door
+
+n 05
+s 00
+w 07
+e 00
+
+08
+west
+
+you are in a black room
+in front of you is a purple door
+to your left is a blank wall
+to your right is a white door
+
+n 05
+s 00
+w 07
+e 00
+
+08
+east
+
+you are in a black room
+in front of you is a blank wall
+to your left is a white door
+to your right is a blank wall
+
+n 05
+s 00
+w 07
+e 00

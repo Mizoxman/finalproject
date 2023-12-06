@@ -1,0 +1,19 @@
+Michael Hecox
+Student ID # 00243521
+Course # CIS-153-L8
+Final Project
+
+TODO:
+design map layout
+establish all room states
+create loading system
+create saving system
+create item interaction system
+establish all item interactions
+create room presentation system and state change system
+create movement system
+create function to check items and enable or disable some data accordingly
+add goal
+optional: add RNG entities
+optional: add pictures
+optional: add GUI and Buttons to do things
