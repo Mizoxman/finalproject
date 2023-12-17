@@ -1,7 +1,7 @@
 # Michael Hecox
 # Final Project check-in
 
-def readfile(lineNumber):
+def readfileline(lineNumber):
     # returns the data from the specified line of the layout file
     hand = open("layout.txt")
     count = 0
@@ -16,13 +16,45 @@ def readfile(lineNumber):
 
 def load():
     # placeholder until I get a saving and loading system working
-    return ("05", "north")
+    # eval() function to convert strings to dictionaries found at https://www.tutorialspoint.com/How-to-convert-a-String-representation-of-a-Dictionary-to-a-dictionary-in-Python
+    playerInv = readfileline(417)
+    playerInv = eval(playerInv[4:])
+    room1Inv = readfileline(418)
+    room1Inv = eval(room1Inv[4:])
+    room2Inv = readfileline(419)
+    room2Inv = eval(room2Inv[4:])
+    room3Inv = readfileline(420)
+    room3Inv = eval(room3Inv[4:])
+    room4Inv = readfileline(421)
+    room4Inv = eval(room4Inv[4:])
+    room5Inv = readfileline(422)
+    room5Inv = eval(room5Inv[4:])
+    room6Inv = readfileline(423)
+    room6Inv = eval(room6Inv[4:])
+    room7Inv = readfileline(424)
+    room7Inv = eval(room7Inv[4:])
+    room8Inv = readfileline(425)
+    room8Inv = eval(room8Inv[4:])
+    return ("05", "north", playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv)
+
+def printInventory(Inventory):
+    for key in Inventory:
+        print(Inventory[key], key)
+    if len(Inventory) == 0:
+        print("nothing")
+    return
 
 def main():
     # initialize game
-    position, orientation = load()
+    position, orientation, playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv = load()
+    roomInvMapping = {'01': room1Inv, '02': room2Inv, '03': room3Inv, '04': room4Inv, '05': room5Inv, '06': room6Inv, '07': room7Inv, '08': room8Inv}
     playing = True
     while playing == True:
+        
+        if 'compass' in playerInv:
+            knowDirection = True
+        else:
+            knowDirection = False
         
         if orientation == "north":
             offset = 0
@@ -36,10 +68,13 @@ def main():
         roomdata = (((int(position) - 1) * 52) + offset + 4)
 
         for x in range(5):
-            descline = readfile(roomdata)
+            descline = readfileline(roomdata)
             print(descline)
             roomdata = roomdata + 1
-        print("you are facing " + orientation)
+        print("you can see:")
+        printInventory(roomInvMapping[position])
+        if knowDirection == True:
+            print("you are facing " + orientation)
         print("")
         playerInput = input("what do you want to do? ")
         print("")
@@ -77,7 +112,7 @@ def main():
                 orientation = "south"
         elif playerInput == "move north":
             roomdata = roomdata + 0
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -86,7 +121,7 @@ def main():
                 position = targetroom
         elif playerInput == "move south":
             roomdata = roomdata + 1
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -95,7 +130,7 @@ def main():
                 position = targetroom
         elif playerInput == "move west":
             roomdata = roomdata + 2
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -104,7 +139,7 @@ def main():
                 position = targetroom
         elif playerInput == "move east":
             roomdata = roomdata + 3
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -120,7 +155,7 @@ def main():
                 roomdata = roomdata + 2
             elif orientation == "east":
                 roomdata = roomdata + 3
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -136,7 +171,7 @@ def main():
                 roomdata = roomdata + 1
             elif orientation == "east":
                 roomdata = roomdata + 0
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
@@ -152,13 +187,17 @@ def main():
                 roomdata = roomdata + 0
             elif orientation == "east":
                 roomdata = roomdata + 1
-            targetroom = readfile(roomdata)
+            targetroom = readfileline(roomdata)
             targetroom = targetroom[2:]
             #print(targetroom)
             if targetroom == "00":
                 print("can't do that")
             else:
                 position = targetroom
+        elif playerInput == "inventory":
+            # print contents of player inventory
+            print("you are carrying: ")
+            printInventory(playerInv)
         else:
             print("can't do that")
         print("")

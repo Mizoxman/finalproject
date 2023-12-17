@@ -413,3 +413,13 @@ n 05
 s 00
 w 07
 e 00
+
+00: {'hat': 1}
+01: {'shoes': 2}
+02: {'hammer': 1, 'nails': 10}
+03: {'compass': 1}
+04: {'marbles': 5}
+05: {}
+06: {'glasses': 1}
+07: {'marbles': 10}
+08: {'key': 1}
