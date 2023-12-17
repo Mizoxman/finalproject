@@ -1,6 +1,8 @@
 # Michael Hecox
 # Final Project
 
+import re
+
 def readfileline(lineNumber):
     # returns the data from the specified line of the layout file
     hand = open("layout.txt")
@@ -14,26 +16,38 @@ def readfileline(lineNumber):
     hand.close()
     return contents
 
-def load():
-    # placeholder until I get a saving and loading system working
+def loadNew():
+    # loads starting game state
+    
+    # find the start of where the inventories are stored
+    hand = open("layout.txt")
+    count = 0
+    for line in hand:
+        line = line.rstrip()
+        count = count + 1
+        if re.search('{', line):
+            break
+    hand.close()
+    #print(count)
+    
     # eval() function to convert strings to dictionaries found at https://www.tutorialspoint.com/How-to-convert-a-String-representation-of-a-Dictionary-to-a-dictionary-in-Python
-    playerInv = readfileline(417)
+    playerInv = readfileline(count)
     playerInv = eval(playerInv[4:])
-    room1Inv = readfileline(418)
+    room1Inv = readfileline(count + 1)
     room1Inv = eval(room1Inv[4:])
-    room2Inv = readfileline(419)
+    room2Inv = readfileline(count + 2)
     room2Inv = eval(room2Inv[4:])
-    room3Inv = readfileline(420)
+    room3Inv = readfileline(count + 3)
     room3Inv = eval(room3Inv[4:])
-    room4Inv = readfileline(421)
+    room4Inv = readfileline(count + 4)
     room4Inv = eval(room4Inv[4:])
-    room5Inv = readfileline(422)
+    room5Inv = readfileline(count + 5)
     room5Inv = eval(room5Inv[4:])
-    room6Inv = readfileline(423)
+    room6Inv = readfileline(count + 6)
     room6Inv = eval(room6Inv[4:])
-    room7Inv = readfileline(424)
+    room7Inv = readfileline(count + 7)
     room7Inv = eval(room7Inv[4:])
-    room8Inv = readfileline(425)
+    room8Inv = readfileline(count + 8)
     room8Inv = eval(room8Inv[4:])
     return ("05", "north", playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv)
 
@@ -95,9 +109,10 @@ def move(orientation,roomdata,knowDirection,direction):
 
 def main():
     # initialize game
-    position, orientation, playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv = load()
+    position, orientation, playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv = loadNew()
     roomInvMapping = {'01': room1Inv, '02': room2Inv, '03': room3Inv, '04': room4Inv, '05': room5Inv, '06': room6Inv, '07': room7Inv, '08': room8Inv}
     playing = True
+    # start of main loop
     while playing == True:
         
         if 'compass' in playerInv:
@@ -115,7 +130,8 @@ def main():
             offset = 39
         
         roomdata = (((int(position) - 1) * 52) + offset + 4)
-
+        
+        # print room description
         for x in range(5):
             descline = readfileline(roomdata)
             print(descline)
