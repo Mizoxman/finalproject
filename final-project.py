@@ -63,6 +63,7 @@ def turn(orientation,turning,knowDirection):
     return orientation
 
 def move(orientation,roomdata,knowDirection,direction):
+    # handle player movement
     cardinals = {'north': 0, 'south': 1, 'west': 2, 'east': 3}
     forward = {'north': 0, 'south': 1, 'west': 2, 'east': 3}
     left = {'north': 2, 'south': 3, 'west': 1, 'east': 0}
@@ -127,96 +128,22 @@ def main():
         playerInput = input("what do you want to do? ")
         print("")
         playerInput = playerInput.lower()
-        # movement code, definitely a way to make this cleaner, worry about that after it works consistently
+        
+        # split player inputs for easier parsing in some instances
         playerInput1 = playerInput[0:4]
         playerInput2 = playerInput[5:len(playerInput)]
         
+        # quit game
         if playerInput1 == "exit":
             playing = False
         elif playerInput1 == "quit":
             playing = False
+        # player turning code
         elif playerInput1 == "turn":
             orientation = turn(orientation, playerInput2, knowDirection)
-        elif playerInput == "move north":
-            roomdata = roomdata + 0
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move south":
-            roomdata = roomdata + 1
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move west":
-            roomdata = roomdata + 2
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move east":
-            roomdata = roomdata + 3
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move forward":
-            if orientation == "north":
-                roomdata = roomdata + 0
-            elif orientation == "south":
-                roomdata = roomdata + 1
-            elif orientation == "west":
-                roomdata = roomdata + 2
-            elif orientation == "east":
-                roomdata = roomdata + 3
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move left":
-            if orientation == "north":
-                roomdata = roomdata + 2
-            elif orientation == "south":
-                roomdata = roomdata + 3
-            elif orientation == "west":
-                roomdata = roomdata + 1
-            elif orientation == "east":
-                roomdata = roomdata + 0
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
-            if targetroom == "00":
-                print("can't do that")
-            else:
-                position = targetroom
-        elif playerInput == "move right":
-            if orientation == "north":
-                roomdata = roomdata + 3
-            elif orientation == "south":
-                roomdata = roomdata + 2
-            elif orientation == "west":
-                roomdata = roomdata + 0
-            elif orientation == "east":
-                roomdata = roomdata + 1
-            targetroom = readfileline(roomdata)
-            targetroom = targetroom[2:]
-            #print(targetroom)
+        # player movement code
+        elif playerInput1 == "move":
+            targetroom = move(orientation, roomdata, knowDirection, playerInput2)
             if targetroom == "00":
                 print("can't do that")
             else:
