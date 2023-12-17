@@ -52,8 +52,8 @@ def loadNew():
     return ("05", "north", playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv)
 
 def printInventory(Inventory):
-    for key in Inventory:
-        print(Inventory[key], key)
+    for thing in Inventory:
+        print(Inventory[thing], thing)
     if len(Inventory) == 0:
         print("nothing")
     return
@@ -106,6 +106,17 @@ def move(orientation,roomdata,knowDirection,direction):
         targetroom = "00"
     return targetroom
 
+def invTransfer(playerInv, roomInv, thing):
+    if thing not in playerInv:
+        playerInv[thing] = 1
+    else:
+        playerInv[thing] = playerInv[thing] + 1
+    roomInv[thing] = roomInv[thing] - 1
+    roomInv2 = dict()
+    for thing in roomInv:
+        if roomInv[thing] > 0:
+            roomInv2[thing] = roomInv[thing]
+    return (playerInv, roomInv2)
 
 def main():
     # initialize game
@@ -161,6 +172,7 @@ def main():
         elif playerInput1 == "move":
             targetroom = move(orientation, roomdata, knowDirection, playerInput2)
             if targetroom == "00":
+                # 00 represents invalid movement, any attempts to walk through walls results in the target being set as room 00, which then prevents any movement
                 print("can't do that")
             else:
                 position = targetroom
@@ -168,6 +180,18 @@ def main():
             # print contents of player inventory
             print("you are carrying: ")
             printInventory(playerInv)
+        elif playerInput1 == "take":
+            # take objects you find in rooms and add them to your inventory
+            if playerInput2 in roomInvMapping[position]:
+                playerInv, roomInvMapping[position] = invTransfer(playerInv, roomInvMapping[position], playerInput2)
+            else:
+                print("there is no " + playerInput2)
+        elif playerInput1 == "drop":
+            # drop objects out of your inventory into the current room
+            if playerInput2 in playerInv:
+                roomInvMapping[position], playerInv = invTransfer(roomInvMapping[position], playerInv, playerInput2)
+            else:
+                print("you don't have a " + playerInput2)
         else:
             print("can't do that")
         print("")
