@@ -1,5 +1,5 @@
 # Michael Hecox
-# Final Project check-in
+# Final Project
 
 def readfileline(lineNumber):
     # returns the data from the specified line of the layout file
@@ -44,6 +44,25 @@ def printInventory(Inventory):
         print("nothing")
     return
 
+def turn(orientation,turn,knowDirection):
+    # handle player turning
+    cardinals = ['north', 'south', 'west', 'east']
+    left = {'north': 'west', 'west': 'south', 'south': 'east', 'east': 'north'}
+    right = {'north': 'east', 'east': 'south', 'south': 'west', 'west': 'north'}
+    if turn in cardinals:
+        if knowDirection == True:
+            orientation = turn
+        else:
+            print("don't know " + turn)
+    elif turn == 'left':
+        orientation = left[orientation]
+    elif turn == 'right':
+        orientation = right[orientation]
+    else:
+        print("can't do that")
+    return orientation
+
+
 def main():
     # initialize game
     position, orientation, playerInv, room1Inv, room2Inv, room3Inv, room4Inv, room5Inv, room6Inv, room7Inv, room8Inv = load()
@@ -80,36 +99,14 @@ def main():
         print("")
         playerInput = playerInput.lower()
         # movement code, definitely a way to make this cleaner, worry about that after it works consistently
-        if playerInput == "exit":
+        playerInput1 = playerInput[0:4]
+        playerInput2 = playerInput[5:len(playerInput)]
+        if playerInput1 == "exit":
             playing = False
-        elif playerInput == "quit":
+        elif playerInput1 == "quit":
             playing = False
-        elif playerInput == "turn north":
-            orientation = "north"
-        elif playerInput == "turn south":
-            orientation = "south"
-        elif playerInput == "turn west":
-            orientation = "west"
-        elif playerInput == "turn east":
-            orientation = "east"
-        elif playerInput == "turn left":
-            if orientation == "north":
-                orientation = "west"
-            elif orientation == "south":
-                orientation = "east"
-            elif orientation == "west":
-                orientation = "south"
-            elif orientation == "east":
-                orientation = "north"
-        elif playerInput == "turn right":
-            if orientation == "north":
-                orientation = "east"
-            elif orientation == "south":
-                orientation = "west"
-            elif orientation == "west":
-                orientation = "north"
-            elif orientation == "east":
-                orientation = "south"
+        elif playerInput1 == "turn":
+            orientation = turn(orientation, playerInput2, knowDirection)
         elif playerInput == "move north":
             roomdata = roomdata + 0
             targetroom = readfileline(roomdata)
