@@ -62,6 +62,35 @@ def turn(orientation,turning,knowDirection):
         print("can't do that")
     return orientation
 
+def move(orientation,roomdata,knowDirection,direction):
+    cardinals = {'north': 0, 'south': 1, 'west': 2, 'east': 3}
+    forward = {'north': 0, 'south': 1, 'west': 2, 'east': 3}
+    left = {'north': 2, 'south': 3, 'west': 1, 'east': 0}
+    right = {'north': 3, 'south': 2, 'west': 0, 'east': 1}
+    if direction in cardinals:
+        if knowDirection == True:
+            roomdata = roomdata + cardinals[direction]
+            targetroom = readfileline(roomdata)
+            targetroom = targetroom[2:]
+        else:
+            targetroom = "00"
+            print("Don't know " + direction)
+    elif direction == 'forward':
+        roomdata = roomdata + forward[orientation]
+        targetroom = readfileline(roomdata)
+        targetroom = targetroom[2:]
+    elif direction == 'left':
+        roomdata = roomdata + left[orientation]
+        targetroom = readfileline(roomdata)
+        targetroom = targetroom[2:]
+    elif direction == 'right':
+        roomdata = roomdata + right[orientation]
+        targetroom = readfileline(roomdata)
+        targetroom = targetroom[2:]
+    else:
+        targetroom = "00"
+    return targetroom
+
 
 def main():
     # initialize game
@@ -101,6 +130,7 @@ def main():
         # movement code, definitely a way to make this cleaner, worry about that after it works consistently
         playerInput1 = playerInput[0:4]
         playerInput2 = playerInput[5:len(playerInput)]
+        
         if playerInput1 == "exit":
             playing = False
         elif playerInput1 == "quit":
