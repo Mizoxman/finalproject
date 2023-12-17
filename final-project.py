@@ -44,19 +44,19 @@ def printInventory(Inventory):
         print("nothing")
     return
 
-def turn(orientation,turn,knowDirection):
+def turn(orientation,turning,knowDirection):
     # handle player turning
     cardinals = ['north', 'south', 'west', 'east']
     left = {'north': 'west', 'west': 'south', 'south': 'east', 'east': 'north'}
     right = {'north': 'east', 'east': 'south', 'south': 'west', 'west': 'north'}
-    if turn in cardinals:
+    if turning in cardinals:
         if knowDirection == True:
-            orientation = turn
+            orientation = turning
         else:
-            print("don't know " + turn)
-    elif turn == 'left':
+            print("don't know " + turning)
+    elif turning == 'left':
         orientation = left[orientation]
-    elif turn == 'right':
+    elif turning == 'right':
         orientation = right[orientation]
     else:
         print("can't do that")
