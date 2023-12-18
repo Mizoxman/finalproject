@@ -1,4 +1,6 @@
 # Michael Hecox
+# Student ID # 00243521
+# Course # CIS-153-L8
 # Final Project
 # simple text adventure game framework
 
