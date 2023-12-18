@@ -1,5 +1,6 @@
 # Michael Hecox
 # Final Project
+# simple text adventure game framework
 
 import re
 
@@ -107,6 +108,7 @@ def move(orientation,roomdata,knowDirection,direction):
     return targetroom
 
 def invTransfer(playerInv, roomInv, thing):
+    #moves an object between 2 inventories, and erases its entry in an inventory if the count falls to 0
     if thing not in playerInv:
         playerInv[thing] = 1
     else:
@@ -126,11 +128,13 @@ def main():
     # start of main loop
     while playing == True:
         
+        # checks if the player is holding a compass, which enables or disables certain information and movement options
         if 'compass' in playerInv:
             knowDirection = True
         else:
             knowDirection = False
         
+        # represents the way the room data is formatted in the text file, so that it may be extracted seamlessly
         if orientation == "north":
             offset = 0
         elif orientation == "south":
@@ -139,7 +143,6 @@ def main():
             offset = 26
         elif orientation == "east":
             offset = 39
-        
         roomdata = (((int(position) - 1) * 52) + offset + 4)
         
         # print room description
@@ -147,6 +150,7 @@ def main():
             descline = readfileline(roomdata)
             print(descline)
             roomdata = roomdata + 1
+        # print contents of room inventory
         print("you can see:")
         printInventory(roomInvMapping[position])
         if knowDirection == True:
@@ -176,8 +180,8 @@ def main():
                 print("can't do that")
             else:
                 position = targetroom
+        # print contents of player inventory
         elif playerInput == "inventory":
-            # print contents of player inventory
             print("you are carrying: ")
             printInventory(playerInv)
         elif playerInput1 == "take":
@@ -192,6 +196,9 @@ def main():
                 roomInvMapping[position], playerInv = invTransfer(roomInvMapping[position], playerInv, playerInput2)
             else:
                 print("you don't have a " + playerInput2)
+        # this basically just resets the loop without taking any actions
+        elif playerInput1 == "look":
+            print("you take a look around")
         else:
             print("can't do that")
         print("")
